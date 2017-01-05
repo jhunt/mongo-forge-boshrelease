@@ -1,0 +1,35 @@
+#!/bin/bash
+set -eu
+
+source /var/vcap/jobs/standalone/helpers/ctl_setup.sh 'standalone'
+export LANG=en_US.UTF-8
+
+case $1 in
+
+  start)
+    pid_guard $PIDFILE $JOB_NAME
+
+    DBPATH=$STORE_DIR/db
+    mkdir -p $DBPATH
+    chown vcap:vcap $DBPATH
+    exec chpst -u vcap:vcap mongod \
+         <% if p('debug') %>--verbose <% end %>\
+         --port <%= p('port') %> \
+         --pidfilepath $PIDFILE \
+         --nounixsocket \
+         --auth \
+         --storageEngine <%= p('storage_engine') %> \
+         --dbpath $DBPATH \
+         >>$LOG_DIR/$JOB_NAME.log 2>&1
+    ;;
+
+  stop)
+    kill_and_wait $PIDFILE
+    ;;
+
+  *)
+    echo "Usage: standalone_ctl {start|stop}"
+    ;;
+
+esac
+exit 0

@@ -1,0 +1,13 @@
+#!/bin/bash
+set -eu
+
+# $BOSH_COMPILE_TARGET - where this package & spec'd source files are available
+# $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
+
+# from https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-3.4.1.tgz
+pushd mongodb
+tar -xzf mongodb-linux-x86_64-3.4.1.tgz
+mkdir ${BOSH_INSTALL_TARGET}/bin
+cp mongodb-linux-x86_64-3.4.1/bin/* ${BOSH_INSTALL_TARGET}/bin
+chmod 0755 ${BOSH_INSTALL_TARGET}/bin/*
+popd

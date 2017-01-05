@@ -1,0 +1,24 @@
+---
+name: standalone
+packages:
+  - mongodb
+
+templates:
+  bin/ctl: bin/ctl
+  bin/monit_debugger: bin/monit_debugger
+  data/properties.sh.erb: data/properties.sh
+  helpers/ctl_setup.sh: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+
+properties:
+  debug:
+    description: Enable verbose output from the mongod process, for troubleshooting.
+    default:     false
+
+  port:
+    description: TCP port that mongod process will bind to and listen on.
+    default:     27017
+
+  storage_engine:
+    description: Storage Engine to use, one of 'mmapv1', 'wiredTiger', or 'inMemory'
+    default:     wiredTiger
