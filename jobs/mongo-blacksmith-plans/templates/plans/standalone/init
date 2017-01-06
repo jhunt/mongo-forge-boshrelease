@@ -1,0 +1,6 @@
+#!/bin/bash
+set -eu
+
+safe gen $CREDENTIALS/mongo/users/admin password
+
+exit 0
