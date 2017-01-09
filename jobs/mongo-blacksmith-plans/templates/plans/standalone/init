@@ -1,6 +1,7 @@
 #!/bin/bash
 set -eu
 
-safe gen $CREDENTIALS/mongo/users/admin password
+safe gen 16 $CREDENTIALS/mongo/users/admin username
+safe gen 24 $CREDENTIALS/mongo/users/admin password
 
 exit 0

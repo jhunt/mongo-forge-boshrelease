@@ -1,0 +1,16 @@
+#!/bin/bash
+set -eu
+
+export PATH=$PATH:/var/vcap/packages/mongodb/bin
+cat <<EOF | mongo
+use admin
+db.createUser({
+  user: "<%= p('admin.username') %>",
+  pwd:  "<%= p('admin.password') %>",
+  customData: { auto: "generated" },
+  roles: [
+    "userAdminAnyDatabase",
+    "dbAdminAnyDatabase",
+    "readWriteAnyDatabase"]})
+EOF
+exit 0

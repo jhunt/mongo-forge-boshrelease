@@ -1,5 +1,6 @@
 ---
 meta:
+  username: (( vault $CREDENTIALS "/mongo/users/admin:username" ))
   password: (( vault $CREDENTIALS "/mongo/users/admin:password" ))
 
 releases:
@@ -32,3 +33,6 @@ instance_groups:
         release: mongo-forge
         properties:
           debug: true
+          admin:
+            username: (( grab meta.username ))
+            password: (( grab meta.password ))
