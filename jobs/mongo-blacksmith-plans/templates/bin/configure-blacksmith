@@ -22,6 +22,7 @@ cat > $PLANROOT/plan.yml <<EOF
 ---
 id: <%= id %>
 name: <%= plan["name"] || id %>
+limit: <%= plan["limit"] || 0 %>
 description: |+
   <%= plan["description"] || 'no description provided' %>
 EOF

@@ -28,6 +28,10 @@ properties:
     description: List of tags to apply to service instances.
     default: [blacksmith, dedicated, mongo]
 
+  service.limit:
+    description: A global limit on the number of Mongo services (regardless of the plan); 0 = unlimited.
+    default: 0
+
   plans:
     description: |
       A map of plans.  I.e.:
@@ -35,10 +39,12 @@ properties:
         standalone:
           name: Standalone MongoDB Instance
           description: A single mongod server, with no redundancy or replication
+          limit: 7
           type: standalone
           vm_type: default
 
-      Configuration keys beyond `name', `description' and `type' are type-specific.
+      Configuration keys beyond `name', `description', `limit', and `type' are type-specific.
+          limit: 7
 
       For type=standalone:
 
