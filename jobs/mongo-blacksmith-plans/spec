@@ -18,7 +18,7 @@ properties:
 
   service.name:
     description: Human-friendly name for this service, to be displayed in the Cloud Foundry marketplace.
-    default: MongoDB
+    default: mongo
 
   service.description:
     description: A description for this service, to be displayed in the Cloud Foundry marketplace.
