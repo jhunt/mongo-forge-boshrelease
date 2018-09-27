@@ -1,0 +1,5 @@
+check process query-router
+  with pidfile /var/vcap/sys/run/query-router/query-router.pid
+  start program "/var/vcap/jobs/query-router/bin/monit_debugger query-router_ctl '/var/vcap/jobs/query-router/bin/ctl start'"
+  stop program "/var/vcap/jobs/query-router/bin/monit_debugger query-router_ctl '/var/vcap/jobs/query-router/bin/ctl stop'"
+  group vcap

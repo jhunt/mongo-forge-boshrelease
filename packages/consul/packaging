@@ -1,0 +1,13 @@
+#!/bin/bash
+set -eu
+
+# $BOSH_COMPILE_TARGET - where this package & spec'd source files are available
+# $BOSH_INSTALL_TARGET - where you copy/install files to be included in package
+
+# from https://releases.hashicorp.com/consul/0.7.2/consul_0.7.2_linux_amd64.zip
+pushd blobs
+unzip consul_0.7.2_linux_amd64.zip
+mkdir ${BOSH_INSTALL_TARGET}/bin
+cp consul ${BOSH_INSTALL_TARGET}/bin
+chmod 0755 ${BOSH_INSTALL_TARGET}/bin/*
+popd

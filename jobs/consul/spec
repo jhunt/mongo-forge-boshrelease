@@ -1,0 +1,32 @@
+---
+name: consul
+packages:
+  - consul
+
+templates:
+  bin/ctl: bin/ctl
+  bin/monit_debugger: bin/monit_debugger
+  data/properties.sh.erb: data/properties.sh
+  helpers/ctl_setup.sh: helpers/ctl_setup.sh
+  helpers/ctl_utils.sh: helpers/ctl_utils.sh
+
+properties:
+  domain:
+    description: DNS domain name to use for service discovery
+    default:     mongo.local
+
+  upstream:
+    description: List of IPs of the upstream DNS servers for resolving queries recursively
+    default:     []
+
+  mode:
+    description: What mode this Consul instance should assume ('server' or 'agent')
+    default:     agent
+
+  tls:
+    ca:
+      description: Certificate Authority certificate (in PEM format) that signed the Consul TLS certificate
+    cert:
+      description: Consul TLS Certificate, in PEM format.
+    key:
+      description: Consul TLS Private Key, in PEM format.

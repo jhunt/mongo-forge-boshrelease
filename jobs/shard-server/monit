@@ -1,0 +1,5 @@
+check process shard-server
+  with pidfile /var/vcap/sys/run/shard-server/shard-server.pid
+  start program "/var/vcap/jobs/shard-server/bin/monit_debugger shard-server_ctl '/var/vcap/jobs/shard-server/bin/ctl start'"
+  stop program "/var/vcap/jobs/shard-server/bin/monit_debugger shard-server_ctl '/var/vcap/jobs/shard-server/bin/ctl stop'"
+  group vcap
